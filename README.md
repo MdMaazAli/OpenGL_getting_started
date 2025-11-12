@@ -1,48 +1,50 @@
-<h1 align="center" style="color:#ff8c00; font-family:'Segoe UI', sans-serif;">
+<h1 align="center" style="background: linear-gradient(90deg, #ff4500, #ff8c00); -webkit-background-clip: text; color: transparent; font-family:'Segoe UI', sans-serif;">
 LearnOpenGL – Getting Started
 </h1>
 
-<p align="center" style="color:#b3b3b3;">
+<p align="center" style="color:#dcdcdc;">
 A collection of OpenGL mini-projects built while following the 
-<a href="https://learnopengl.com/" style="color:#ff8c00;">LearnOpenGL</a> tutorial series.<br>
-Each folder represents an exercise exploring the fundamentals of modern OpenGL — from creating a window to building a fully controllable 3D camera.
+<a href="https://learnopengl.com/" style="color:#ff6347;">LearnOpenGL</a> tutorial series.<br>
+Each section explores a different concept in modern OpenGL, from window creation to the camera system.
 </p>
 
----
+<p align="center">
+  <img src="assets/OpenGLtriangle.png" alt="Gradient Triangle" width="400" style="border-radius:12px; box-shadow:0 0 15px rgba(255,69,0,0.4);" />
+</p>
+
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); margin: 30px 0;">
 
 ### 📂 Project Structure
 | Folder | Topic | Description |
 |:--|:--|:--|
-| **gl1** | Hello Window | Setting up GLFW and rendering the first window. |
-| **gl2** | Hello Triangle | Drawing the first triangle using VBOs and VAOs. |
-| **gl3** | Shaders | Writing, compiling, and linking vertex & fragment shaders. |
-| **gl4** | Textures | Loading and applying textures using STB image. |
-| **gl5** | Transformations | Translating, rotating, and scaling 3D objects. |
-| **gl6** | Coordinate Systems | Understanding world, view, and projection transformations. |
-| **gl7** | Camera Class | Implementing a reusable camera abstraction. |
-| **gl8** | Keyboard Input | Adding camera movement with WASD controls. |
-| **gl9** | Mouse Input | Implementing free-look camera using mouse input. |
-| **gl10** | Zoom and Final Camera | Completing the camera system with scroll zoom and cleanup. |
+| gl1 | Hello Window | Setting up GLFW and rendering a simple window. |
+| gl2 | Hello Triangle | Drawing the first triangle using VBOs and VAOs. |
+| gl3 | Shaders | Writing and compiling vertex & fragment shaders. |
+| gl4 | Textures | Loading and applying textures using STB image. |
+| gl5 | Transformations | Translating, rotating, and scaling objects. |
+| gl6 | Coordinate Systems | Understanding view and projection matrices. |
+| gl7 | Camera | Implementing a free-look FPS-style camera. |
+| gl8 | Camera Refinement | Adding smooth motion and zoom controls. |
+| gl9 | Combined Concepts | Experimenting with transformations and multiple cubes. |
+| gl10 | Final – Camera Showcase | Bringing it all together with camera movement and perspective. |
 
-*(The sequence covers all chapters of the LearnOpenGL “Getting Started” section, ending at the Camera tutorial.)*
-
----
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); margin: 30px 0;">
 
 ### 🛠️ Tools & Libraries
 - **C++17**
-- **GLFW** – window creation & input handling  
+- **GLFW** – window & input management  
 - **GLAD** – OpenGL function loader  
-- **GLM** – mathematics library (vectors, matrices, transformations)  
-- **STB Image** – image loading for textures  
+- **GLM** – mathematics (matrices, vectors)  
+- **STB Image** – texture loading  
 
----
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); margin: 30px 0;">
 
 ### 🚀 About
-This repository documents my journey through the *Getting Started* section of LearnOpenGL.<br>
-Each exercise builds upon the previous one, reinforcing understanding of the OpenGL rendering pipeline — from drawing a simple triangle to exploring 3D movement with a functional camera system.
+This repository documents my progress through the *Getting Started* section of LearnOpenGL.<br>
+Each exercise focuses on understanding the fundamentals of the rendering pipeline — from vertices and shaders to transformations and camera control — laying the groundwork for future graphics projects.
 
----
+<hr style="border: none; height: 2px; background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); margin: 30px 0;">
 
-<h3 align="center" style="color:#ff8c00;">
-Built with curiosity and persistence — one triangle at a time.
+<h3 align="center" style="background: linear-gradient(90deg, #ff4500, #ff8c00); -webkit-background-clip: text; color: transparent;">
+Built with curiosity and passion for graphics programming.
 </h3>
