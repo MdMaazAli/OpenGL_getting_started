@@ -43,6 +43,10 @@ Each section explores a different concept in modern OpenGL, from window creation
 This repository documents my progress through the *Getting Started* section of LearnOpenGL.<br>
 Each exercise focuses on understanding the fundamentals of the rendering pipeline — from vertices and shaders to transformations and camera control — laying the groundwork for future graphics projects.
 
+<p align="center">
+  <img src="assets/OpenGLcamera_movement.gif" alt="OpenGL Demo" width="600" style="border-radius:12px; box-shadow:0 0 15px rgba(255,69,0,0.4);" />
+</p>
+
 <hr style="border: none; height: 2px; background: linear-gradient(90deg, #ff4500, #ff8c00, #ff4500); margin: 30px 0;">
 
 <h3 align="center" style="background: linear-gradient(90deg, #ff4500, #ff8c00); -webkit-background-clip: text; color: transparent;">
