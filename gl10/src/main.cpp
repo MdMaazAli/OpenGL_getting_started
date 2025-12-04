@@ -68,6 +68,16 @@ void mouse_callback(GLFWwindow* window,double xPosIn,double yPosIn){
     cameraFront = normalize(direction);
 }
 
+void scroll_callback(GLFWwindow* window,double xOffset,double yOffset){
+    fov -= (float)yOffset;
+    if(fov < 1.0f){
+        fov  = 1.0f;
+    }
+    if(fov > 45.0f){
+        fov = 45.0f;
+    }
+}
+
 // Time.deltaTime
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -202,6 +212,8 @@ int main(){
     glfwSetCursorPosCallback(window,mouse_callback);
     // capturing the mouse
     glfwSetInputMode(window,GLFW_CURSOR,GLFW_CURSOR_DISABLED);
+    // scroll callback
+    glfwSetScrollCallback(window,scroll_callback);
 
     ourShader.use();
     ourShader.setInt("ourTex",0);
@@ -221,19 +233,20 @@ int main(){
 
     // projection matrix
     mat4 projection;
-    projection = perspective(radians(45.0f),800.0f/600.0f,0.1f,100.0f);
-    ourShader.setMat4("projection",projection);
     
     glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window)){
         processInput(window);
-
+        
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame-lastFrame;
         lastFrame = currentFrame;
-
+        
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        projection = perspective(radians(fov),800.0f/600.0f,0.1f,100.0f);
+        ourShader.setMat4("projection",projection);
 
         ourShader.use();
         // camera view matrix
