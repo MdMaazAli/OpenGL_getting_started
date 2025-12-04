@@ -20,6 +20,54 @@ vec3 cameraPos = vec3(0.0f,0.0f,3.0f);
 vec3 cameraFront = vec3(0.0f,0.0f,-1.0f);
 vec3 cameraUp = vec3(0.0f,1.0f,0.0f);
 
+// camera rotation
+bool mouseFirst = true;
+float camYaw = -90.0f;
+float camPitch = 0.0f;
+float lastX = 800.0f/2.0f;
+float lastY = 600.0f/2.0f;
+float fov = 45.0f;
+
+void mouse_callback(GLFWwindow* window,double xPosIn,double yPosIn){
+    float xPos = (float)xPosIn;
+    float yPos = (float)yPosIn;
+
+    // mouse first
+    if(mouseFirst){
+        xPos = lastX;
+        yPos = lastY;
+        mouseFirst = false;
+    }
+
+    // calculating offset
+    float xOffset = xPos-lastX;
+    float yOffset = lastY-yPos;
+    lastX = xPos;
+    lastY = yPos;
+
+    // sensitivity
+    float sensitivity = 0.1f;
+    xOffset *= sensitivity;
+    yOffset *= sensitivity;
+
+    camPitch += yOffset;
+    camYaw += xOffset;
+
+    // removing camera flip
+    if(camPitch > 89.0f){
+        camPitch = 89.0f;
+    }
+    if(camPitch < -89.0f){
+        camPitch = -89.0f;
+    }
+
+    vec3 direction;
+    direction.x = cos(radians(camYaw))*cos(radians(camPitch));
+    direction.y = sin(radians(camPitch));
+    direction.z = sin(radians(camYaw))*cos(radians(camPitch));
+    cameraFront = normalize(direction);
+}
+
 // Time.deltaTime
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -150,6 +198,10 @@ int main(){
 
     glViewport(0,0,800,600);
     glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
+    // mouse callback
+    glfwSetCursorPosCallback(window,mouse_callback);
+    // capturing the mouse
+    glfwSetInputMode(window,GLFW_CURSOR,GLFW_CURSOR_DISABLED);
 
     ourShader.use();
     ourShader.setInt("ourTex",0);
@@ -172,6 +224,7 @@ int main(){
     projection = perspective(radians(45.0f),800.0f/600.0f,0.1f,100.0f);
     ourShader.setMat4("projection",projection);
     
+    glEnable(GL_DEPTH_TEST);
     while(!glfwWindowShouldClose(window)){
         processInput(window);
 
@@ -180,7 +233,6 @@ int main(){
         lastFrame = currentFrame;
 
         glClearColor(0.1f,0.1f,0.1f,1.0f);
-        glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         ourShader.use();
@@ -193,7 +245,6 @@ int main(){
         glBindVertexArray(VAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,TIO);
-        glDrawArrays(GL_TRIANGLES,0,36);
         
         for(int i=1; i<=10; i++){
             mat4 model = mat4(1.0f);
